@@ -1,3 +1,7 @@
+<?
+session_start(); 
+?>
+
 <!doctype html>
 <html>
 <head>
@@ -22,24 +26,35 @@
 
   <!-- CSS for each example: -->
   <link rel="stylesheet" type="text/css" href="css/example1.css" data-rel-css="" />
+
+  <?php
+
+  $prospect_first_name = $_POST['prospect_first_name'];
+  $prospect_last_name = $_POST['prospect_last_name'];
+  $prospect_email = $_POST['prospect_email'];
+  $prospect_address = $_POST['prospect_address'];
+  $prospect_zip = $_POST['prospect_zip'];
+  $prospect_phone_number = $_POST['prospect_phone_number'];
+  $prospect_city = $_POST['prospect_city'];
+
+   $_SESSION['order_first_name'] = $prospect_first_name;
+    $_SESSION['order_last_name'] = $prospect_last_name;
+    $_SESSION['order_email'] = $prospect_email;
+     $_SESSION['order_address'] = $prospect_address;
+      $_SESSION['order_zip'] = $prospect_zip;
+       $_SESSION['order_phone_number'] = $prospect_phone_number;
+        $_SESSION['order_city'] = $prospect_city;
+
+  ?>
 </head>
+
 <body>
   <style type="text/css">
 .example1 p{
 text-align:center; color:#fff; font-family:'Roboto',sans-serif; 
 }
   </style>
-<?php
 
-  $prospect_first_name  = $_POST['prospect_first_name'];
-  $prospect_last_name  = $_POST['prospect_last_name'];
-  $prospect_email  = $_POST['prospect_email'];
-  $prospect_address  = $_POST['prospect_address'];
-  $prospect_zip  = $_POST['prospect_zip'];
-  $prospect_phone_number  = $_POST['prospect_phone_number'];
-  $prospect_city  = $_POST['prospect_city'];
-
-  ?>
 
   <div class="globalContent">
     <main>
@@ -51,46 +66,15 @@ text-align:center; color:#fff; font-family:'Roboto',sans-serif;
     <section class="container-lg">
       <!--Intro-->
       <div class="cell intro">
-        <ul class="optionList" role="tablist">
-          <li role="tab">
-            <a data-lang="de">
-              Deutsch
-            </a>
-          </li>
-          <li role="tab">
-            <a data-lang="en">
-              English
-            </a>
-          </li>
-          <li role="tab">
-            <a data-lang="es">
-              Español
-            </a>
-          </li>
-          <li role="tab">
-            <a data-lang="fr">
-              Français
-            </a>
-          </li>
-          <li role="tab">
-            <a data-lang="it">
-              Italiano
-            </a>
-          </li>
-          <li role="tab">
-            <a data-lang="ja">
-              日本語
-            </a>
-          </li>
-        </ul>
-        <h1 data-tid="elements_examples.intro.title" class="common-SuperTitle">Stripe Elements examples</h1>
-        <p data-tid="elements_examples.intro.subtitle" class="common-IntroText">Stripe Elements are pre-built rich UI components that help you build your own pixel-perfect checkout flows across desktop and&nbsp;mobile.</p>
+        
+        <h1 data-tid="elements_examples.intro.title" class="common-SuperTitle">Stripe Demo - Checkout</h1>
+        <p data-tid="elements_examples.intro.subtitle" class="common-IntroText">Page designed to take credit card information and send it to Stripe</p>
         <p class="common-ButtonGroup">
         <a data-tid="elements_examples.intro.button_learn_more" href="https://stripe.com/elements" class="common-Button common-Button--default">
-          Learn more
+          Github
         </a>
-        <a data-tid="elements_examples.intro.button_docs" href="https://stripe.com/docs/stripe-js" class="common-Button" ="elements_docs">
-          Explore the docs
+        <a data-tid="elements_examples.intro.button_docs" href="https://dashboard.stripe.com/test/customers" class="common-Button" ="elements_docs">
+          Stripe
         </a>
       </div>
 
@@ -105,7 +89,7 @@ text-align:center; color:#fff; font-family:'Roboto',sans-serif;
        <? echo "<p>text sent to: $prospect_phone_number</p>"; ?>
 
        <br>
-        <form action="charge.php" method="POST" style="padding:20px;">
+         <form action="charge.php" method="POST" style="padding:20px;">
           
   <script
     src="https://checkout.stripe.com/checkout.js" class="stripe-button"

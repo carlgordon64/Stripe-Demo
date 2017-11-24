@@ -1,3 +1,11 @@
+<?
+session_start(); 
+
+
+$_SESSION['test_variable'] = 'test var working!';
+
+?>
+
 <!doctype html>
 <html>
 <head>
@@ -22,10 +30,13 @@
 
   <!-- CSS for each example: -->
   <link rel="stylesheet" type="text/css" href="css/example1.css" data-rel-css="" />
+
+
 </head>
 <body>
 <style type="text/css">
   .field-select {
+    height:40px;
     border-bottom:2px solid #fff;
     background:rgba(255,255,255,0.2) !important;
     width:100%;
@@ -38,6 +49,7 @@
     border-bottom:2px solid #fff;
     background:rgba(255,255,255,0.2) !important;
 }
+
 </style>
 
   <div class="globalContent">
@@ -50,46 +62,15 @@
     <section class="container-lg">
       <!--Intro-->
       <div class="cell intro">
-        <ul class="optionList" role="tablist">
-          <li role="tab">
-            <a data-lang="de">
-              Deutsch
-            </a>
-          </li>
-          <li role="tab">
-            <a data-lang="en">
-              English
-            </a>
-          </li>
-          <li role="tab">
-            <a data-lang="es">
-              Español
-            </a>
-          </li>
-          <li role="tab">
-            <a data-lang="fr">
-              Français
-            </a>
-          </li>
-          <li role="tab">
-            <a data-lang="it">
-              Italiano
-            </a>
-          </li>
-          <li role="tab">
-            <a data-lang="ja">
-              日本語
-            </a>
-          </li>
-        </ul>
-        <h1 data-tid="elements_examples.intro.title" class="common-SuperTitle">Stripe Elements examples</h1>
-        <p data-tid="elements_examples.intro.subtitle" class="common-IntroText">Stripe Elements are pre-built rich UI components that help you build your own pixel-perfect checkout flows across desktop and&nbsp;mobile.</p>
+      
+        <h1 data-tid="elements_examples.intro.title" class="common-SuperTitle">Stripe Demo - Index</h1>
+        <p data-tid="elements_examples.intro.subtitle" class="common-IntroText">Page designed to take prospect data</p>
         <p class="common-ButtonGroup">
-        <a data-tid="elements_examples.intro.button_learn_more" href="https://stripe.com/elements" class="common-Button common-Button--default">
-          Learn more
+        <a target="blank" data-tid="elements_examples.intro.button_learn_more" href="https://github.com/carlgordon64/Stripe-Demo" class="common-Button common-Button--default">
+          Github
         </a>
-        <a data-tid="elements_examples.intro.button_docs" href="https://stripe.com/docs/stripe-js" class="common-Button" ="elements_docs">
-          Explore the docs
+        <a data-tid="elements_examples.intro.button_docs" href="https://dashboard.stripe.com/test/customers" class="common-Button" ="elements_docs">
+          Stripe
         </a>
       </div>
 
@@ -106,13 +87,13 @@
         <label>Email <span class="required">*</span></label>
         <input type="email" name="prospect_email" class="field-long" />
     </li>
+    <li><label>Phone Number<span class="required">*</span></label>
+      <input type="text" data-max-length="10" name="prospect_phone_number" class="text-inp" placeholder="Phone Number" /></li>
+    
     <li><label>Address<span class="required">*</span></label>
       <input type="text" name="prospect_address" class="text-inp" placeholder="Street Address" /></li>
-    <li><label>Zip Code<span class="required">*</span></label>
-      <input type="text" name="prospect_zip" class="text-inp" placeholder="Zip code" /></li>
-      <li><label>Phone Number<span class="required">*</span></label>
-      <input type="text" data-max-length="10" name="prospect_phone_number" class="text-inp" placeholder="Phone Number" /></li>
-    <li>
+
+ <li>
         <label>City</label>
         <select name="prospect_city" class="field-select">
         <option value="Wellington">Wellington</option>
@@ -120,6 +101,11 @@
         <option value="Napier">Napier</option>
         </select>
     </li>
+
+    <li><label>Zip Code<span class="required">*</span></label>
+      <input type="text" name="prospect_zip" class="text-inp" placeholder="Zip code" /></li>
+      
+   
     
     
     <li>
