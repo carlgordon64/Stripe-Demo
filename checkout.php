@@ -24,21 +24,22 @@
   <link rel="stylesheet" type="text/css" href="css/example1.css" data-rel-css="" />
 </head>
 <body>
-<style type="text/css">
-  .field-select {
-    border-bottom:2px solid #fff;
-    background:rgba(255,255,255,0.2) !important;
-    width:100%;
+  <style type="text/css">
+.example1 p{
+text-align:center; color:#fff; font-family:'Roboto',sans-serif; 
 }
-  input[type=text] {
-    border-bottom:2px solid #fff;
-    background:rgba(255,255,255,0.2) !important;
-}
- input[type=email] {
-    border-bottom:2px solid #fff;
-    background:rgba(255,255,255,0.2) !important;
-}
-</style>
+  </style>
+<?php
+
+  $prospect_first_name  = $_POST['prospect_first_name'];
+  $prospect_last_name  = $_POST['prospect_last_name'];
+  $prospect_email  = $_POST['prospect_email'];
+  $prospect_address  = $_POST['prospect_address'];
+  $prospect_zip  = $_POST['prospect_zip'];
+  $prospect_phone_number  = $_POST['prospect_phone_number'];
+  $prospect_city  = $_POST['prospect_city'];
+
+  ?>
 
   <div class="globalContent">
     <main>
@@ -96,39 +97,15 @@
       <!--Example 1-->
       <div class="cell example example1">
         <?php require_once('config.php'); ?>
-<p style="text-align:center; color:#fff; font-family:'Roboto',sans-serif; font-size:24px;">Prospect Form</p>
+<p style="font-size:24px;">Checkout Form</p>
        <br>
-        <form action="checkout.php" method="POST" style="padding:20px;">
-<ul class="form-style-1">
-    <li><label>Full Name <span class="required">*</span></label>
-      <input type="text" name="prospect_first_name" class="text-inp" placeholder="First" />&nbsp;<input type="text" name="prospect_last_name" class="field-divided" placeholder="Last" /></li>
-    <li>
-        <label>Email <span class="required">*</span></label>
-        <input type="email" name="prospect_email" class="field-long" />
-    </li>
-    <li><label>Address<span class="required">*</span></label>
-      <input type="text" name="prospect_address" class="text-inp" placeholder="Street Address" /></li>
-    <li><label>Zip Code<span class="required">*</span></label>
-      <input type="text" name="prospect_zip" class="text-inp" placeholder="Zip code" /></li>
-      <li><label>Phone Number<span class="required">*</span></label>
-      <input type="text" data-max-length="10" name="prospect_phone_number" class="text-inp" placeholder="Phone Number" /></li>
-    <li>
-        <label>City</label>
-        <select name="prospect_city" class="field-select">
-        <option value="Wellington">Wellington</option>
-        <option value="Auckland">Auckland</option>
-        <option value="Napier">Napier</option>
-        </select>
-    </li>
-    
-    
-    <li>
-        <input type="submit" value="Submit" />
-    </li>
-</ul>
-</form>
+       <? echo "<p>thanks, $prospect_first_name $prospect_last_name</p>"; ?>
+       <? echo "<p>delivering to: $prospect_address, $prospect_city, $prospect_zip</p>"; ?>
+       <? echo "<p>email sent to: $prospect_email</p>"; ?>
+       <? echo "<p>text sent to: $prospect_phone_number</p>"; ?>
 
-       <!--  <form action="charge.php" method="POST">
+       <br>
+        <form action="charge.php" method="POST" style="padding:20px;">
           
   <script
     src="https://checkout.stripe.com/checkout.js" class="stripe-button"
@@ -140,46 +117,7 @@
     data-locale="auto"
     data-currency="nzd">
   </script>
-</form> -->
-
-
-
-<!-- <form action="charge.php" method="post">
-  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-          data-key="<?php echo $stripe['publishable_key']; ?>"
-          data-description="Access for a year"
-          data-amount="5000"
-          data-locale="auto"></script>
-</form> -->
-
-       <!--  <form action="index.php" method="POST">
-
-          <fieldset>
-            <div class="row">
-              <label for="example1-name" data-tid="elements_examples.form.name_label">Name</label>
-              <input id="example1-name" data-tid="elements_examples.form.name_placeholder" type="text" placeholder="Jane Doe" required="">
-            </div>
-            <div class="row">
-              <label for="example1-email" data-tid="elements_examples.form.email_label">Email</label>
-              <input id="example1-email" data-tid="elements_examples.form.email_placeholder" type="email" placeholder="janedoe@gmail.com" required="">
-            </div>
-            <div class="row">
-              <label for="example1-phone" data-tid="elements_examples.form.phone_label">Phone</label>
-              <input id="example1-phone" data-tid="elements_examples.form.phone_placeholder" type="tel" placeholder="(941) 555-0123" required="">
-            </div>
-          </fieldset>
-          <fieldset>
-            <div class="row">
-              <div id="example1-card"></div>
-            </div>
-          </fieldset>
-          <button type="submit" data-tid="elements_examples.form.pay_button">Pay $25</button>
-          <div class="error" role="alert"><svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 17 17">
-              <path class="base" fill="#000" d="M8.5,17 C3.80557963,17 0,13.1944204 0,8.5 C0,3.80557963 3.80557963,0 8.5,0 C13.1944204,0 17,3.80557963 17,8.5 C17,13.1944204 13.1944204,17 8.5,17 Z"></path>
-              <path class="glyph" fill="#FFF" d="M8.5,7.29791847 L6.12604076,4.92395924 C5.79409512,4.59201359 5.25590488,4.59201359 4.92395924,4.92395924 C4.59201359,5.25590488 4.59201359,5.79409512 4.92395924,6.12604076 L7.29791847,8.5 L4.92395924,10.8739592 C4.59201359,11.2059049 4.59201359,11.7440951 4.92395924,12.0760408 C5.25590488,12.4079864 5.79409512,12.4079864 6.12604076,12.0760408 L8.5,9.70208153 L10.8739592,12.0760408 C11.2059049,12.4079864 11.7440951,12.4079864 12.0760408,12.0760408 C12.4079864,11.7440951 12.4079864,11.2059049 12.0760408,10.8739592 L9.70208153,8.5 L12.0760408,6.12604076 C12.4079864,5.79409512 12.4079864,5.25590488 12.0760408,4.92395924 C11.7440951,4.59201359 11.2059049,4.59201359 10.8739592,4.92395924 L8.5,7.29791847 L8.5,7.29791847 Z"></path>
-            </svg>
-            <span class="message"></span></div>
-        </form> -->
+</form>
         <div class="success">
           <div class="icon">
             <svg width="84px" height="84px" viewBox="0 0 84 84" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
