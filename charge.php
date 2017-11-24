@@ -2,8 +2,8 @@
   require_once('config.php');
 
   $token  = $_POST['stripeToken'];
-  $name  = $_POST['1735b430-d0ab-11e7-a2dd-3782168b0c2f'];
-
+  $name  = "Test_user";
+  $price= 500;
   
 
   $customer = \Stripe\Customer::create(array(
@@ -13,9 +13,10 @@
 
   $charge = \Stripe\Charge::create(array(
       'customer' => $customer->id,
-      'amount'   => 500,
-      'currency' => 'nzd'
+      'amount'   => $price,
+      'currency' => 'nzd',
+      'description' => 'testing payment form'
   ));
 
-  echo '<h1>Successfully charged $50.00!</h1>';
+  echo "<h1>Successfully charged $5.00</h1>";
 ?>
