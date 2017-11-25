@@ -93,6 +93,9 @@ $_SESSION['test_variable'] = 'test var working!';
     <li><label>Address<span class="required">*</span></label>
       <input type="text" name="prospect_address" class="text-inp" placeholder="Street Address" /></li>
 
+      <li><label>Region</label>
+      <input type="text" name="prospect_region" class="text-inp" placeholder="Region" /></li>
+
  <li>
         <label>City</label>
         <select name="prospect_city" class="field-select">

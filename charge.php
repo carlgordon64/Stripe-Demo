@@ -33,6 +33,7 @@ session_start();
   $order_last_name = $_SESSION['order_last_name'];
   $order_email = $_SESSION['order_email'];
   $order_address = $_SESSION['order_address'];
+  $order_region = $_SESSION['order_region'];
   $order_zip = $_SESSION['order_zip'];
   $order_phone_number = $_SESSION['order_phone_number'];
   $order_city = $_SESSION['order_city'];
@@ -82,7 +83,7 @@ text-align:center; color:#fff; font-family:'Roboto',sans-serif;
 
        <? echo "<p>Your order has been placed successfully!</p>"; ?>
 
-       <? echo "<p>delivering to: $order_address, $order_city, $order_zip</p>"; ?>
+       <? echo "<p>delivering to: $order_address, $order_region, $order_city, $order_zip</p>"; ?>
        <? echo "<p>email sent to: $order_email</p>"; ?>
        <? echo "<p>text sent to: $order_phone_number</p>"; ?>
 
@@ -93,7 +94,7 @@ text-align:center; color:#fff; font-family:'Roboto',sans-serif;
   require_once('config.php');
 
   $token  = $_POST['stripeToken'];
-  $name  = "Test_user";
+  $name  = "$order_first_name $order_last_name";
   $price= 500;
   
 
@@ -106,7 +107,19 @@ text-align:center; color:#fff; font-family:'Roboto',sans-serif;
       'customer' => $customer->id,
       'amount'   => $price,
       'currency' => 'nzd',
-      'description' => 'testing payment form'
+      'description' => 'testing payment form',
+      "metadata" => array(
+        "order_id" => 0001,
+        "Contact number" => $order_phone_number,
+        "Delivery address" => "$order_address, $order_region, $order_city, $order_zip",
+        "Address" => $order_address,
+        "Region" => $order_region,
+        "City" => $order_city,
+        "Zip Code" => $order_zip
+
+        )
+
+
   ));
 
   echo "<h1>Successfully charged $5.00</h1>";

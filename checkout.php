@@ -33,6 +33,7 @@ session_start();
   $prospect_last_name = $_POST['prospect_last_name'];
   $prospect_email = $_POST['prospect_email'];
   $prospect_address = $_POST['prospect_address'];
+    $prospect_region = $_POST['prospect_region'];
   $prospect_zip = $_POST['prospect_zip'];
   $prospect_phone_number = $_POST['prospect_phone_number'];
   $prospect_city = $_POST['prospect_city'];
@@ -41,6 +42,7 @@ session_start();
     $_SESSION['order_last_name'] = $prospect_last_name;
     $_SESSION['order_email'] = $prospect_email;
      $_SESSION['order_address'] = $prospect_address;
+     $_SESSION['order_region'] = $prospect_region;
       $_SESSION['order_zip'] = $prospect_zip;
        $_SESSION['order_phone_number'] = $prospect_phone_number;
         $_SESSION['order_city'] = $prospect_city;
@@ -53,6 +55,18 @@ session_start();
 .example1 p{
 text-align:center; color:#fff; font-family:'Roboto',sans-serif; 
 }
+.payment-form{
+
+}
+.payment-form input[type=submit]{
+background:rgba(255,255,255,0.1) !important;
+margin-top:15px;
+border-radius:10px;
+}
+.payment-form input[type=submit]:hover{
+  background:rgba(255,255,255,0.3) !important;
+cursor: pointer;
+  }
   </style>
 
 
@@ -84,12 +98,12 @@ text-align:center; color:#fff; font-family:'Roboto',sans-serif;
 <p style="font-size:24px;">Checkout Form</p>
        <br>
        <? echo "<p>thanks, $prospect_first_name $prospect_last_name</p>"; ?>
-       <? echo "<p>delivering to: $prospect_address, $prospect_city, $prospect_zip</p>"; ?>
+       <? echo "<p>delivering to: $prospect_address, $prospect_region, $prospect_city, $prospect_zip</p>"; ?>
        <? echo "<p>email sent to: $prospect_email</p>"; ?>
        <? echo "<p>text sent to: $prospect_phone_number</p>"; ?>
 
        <br>
-         <form action="charge.php" method="POST" style="padding:20px;">
+        <!--  <form action="charge.php" method="POST" style="padding:20px;">
           
   <script
     src="https://checkout.stripe.com/checkout.js" class="stripe-button"
@@ -101,7 +115,40 @@ text-align:center; color:#fff; font-family:'Roboto',sans-serif;
     data-locale="auto"
     data-currency="nzd">
   </script>
+</form> -->
+
+<form class="payment-form" action="charge.php" method="POST">
+        <noscript>You must <a href="http://www.enable-javascript.com" target="_blank">enable JavaScript</a> in your web browser in order to pay via Stripe.</noscript>
+
+        <input 
+            type="submit" 
+            value="Pay with Card"
+            data-key="pk_test_BnGeP7pWLmgwoaW4hP54wARh"
+            data-amount="500"
+            data-currency="nzd"
+            data-name="Example Company Inc"
+            data-description="Secure Stripe payment for $5"
+/>
+
+        <script src="https://checkout.stripe.com/v2/checkout.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+        <script>
+        $(document).ready(function() {
+            $(':submit').on('click', function(event) {
+                event.preventDefault();
+                var $button = $(this),
+                    $form = $button.parents('form');
+                var opts = $.extend({}, $button.data(), {
+                    token: function(result) {
+                        $form.append($('<input>').attr({ type: 'hidden', name: 'stripeToken', value: result.id })).submit();
+                    }
+                });
+                StripeCheckout.open(opts);
+            });
+        });
+        </script>
 </form>
+
         <div class="success">
           <div class="icon">
             <svg width="84px" height="84px" viewBox="0 0 84 84" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
