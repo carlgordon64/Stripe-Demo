@@ -13,5 +13,8 @@ Simple credit card payment form using Stripe
 
 - Just realised Stripe is only a payment gateway not a CRM so we will need to build a backend for storing Customer delivery data and prospect data.
 
-- Replace checkout form widget with integrated checkout form. Needs to be able to pass order token to our custome back end (CRM) so we can identify customers with their payment details. 
+- Replace checkout form widget with integrated checkout form. Needs to be able to pass order token to our custome back end (CRM) so we can identify customers with their payment details.
 
+Shawn :
+
+- If possible can you take out codes that aren't necessary for this example ? I have looked through the codes and alot of codes make me confused :( 
