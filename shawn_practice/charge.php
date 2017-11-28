@@ -1,9 +1,6 @@
 <?php
 require_once('Stripe/init.php');
 
-   echo str_replace('  ', '&nbsp; ', nl2br(print_r($_POST, true)));
-   echo $_POST["stripeToken"];
-
    // Set your secret key: remember to change this to your live secret key in production
    // See your keys here: https://dashboard.stripe.com/account/apikeys
    \Stripe\Stripe::setApiKey("sk_test_TDCv6kiSBg1dmwngEboyvDxV");
@@ -17,6 +14,10 @@ require_once('Stripe/init.php');
      "amount" => 1000,
      "currency" => "nzd",
      "description" => "Example charge",
+      "statement_descriptor" => "Custom descriptor",
      "source" => $token,
    ));
+
+   echo str_replace('  ', '&nbsp; ', nl2br(print_r($_POST, true)));
+   echo "charged successfully"
 ?>

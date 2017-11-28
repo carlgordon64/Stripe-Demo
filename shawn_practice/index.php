@@ -49,17 +49,12 @@
     <button>Submit Payment</button>
   </form>
 
-<form action="welcome_get.php" method="get">
-Name: <input type="text" name="name"><br>
-E-mail: <input type="text" name="email"><br>
-<input type="submit">
-</form>
 
 
 
   <script>
   // Create a Stripe client
-  var stripe = Stripe('pk_test_6pRNASCoBOKtIshFeQd4XMUh');
+  var stripe = Stripe('pk_test_Npu3ldDgJUmRVNjfzr0ruwqs');
 
   // Create an instance of Elements
   var elements = stripe.elements();
